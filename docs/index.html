@@ -1,0 +1,185 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Content Refresh Opportunity Scoring Using Search Intelligence</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 42px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            margin-top: 50px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 20px;
+        }
+
+        .abstract {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Content Refresh Opportunity Scoring Using Search Intelligence</h1>
+
+    <p class="subtitle">
+        A machine-learning approach to prioritizing content for review
+    </p>
+
+    <h2>Abstract</h2>
+
+    <div class="abstract">
+        <p>
+            This research investigates whether search-performance and content
+            signals can be used to identify and prioritize pages that may
+            warrant content review or refresh.
+        </p>
+
+        <p>
+            The analysis uses the FlyRank ML Internship dataset and constructs
+            features from historical search visibility, engagement, content
+            characteristics, and freshness signals.
+        </p>
+
+        <p>
+            A machine-learning model is compared against a transparent baseline
+            using a held-out validation design.
+        </p>
+
+        <p>
+            The results are evaluated using ranking-oriented performance
+            measures and translated into prioritized content recommendations.
+        </p>
+
+        <p>
+            The resulting framework is intended as a decision-support system
+            for content review rather than evidence of causal effects on
+            search-engine rankings.
+        </p>
+    </div>
+
+    <h2>1. Introduction / Problem Statement</h2>
+
+    <p>
+        Content teams often have more pages available for review than they can
+        manually evaluate. This research addresses the problem of prioritizing
+        which pages should receive attention first using measurable search and
+        content signals.
+    </p>
+
+    <h2>2. Data</h2>
+
+    <p>
+        This study uses the FlyRank ML Internship dataset. The analysis uses
+        publicly safe, anonymized information and excludes private client
+        information, domains, URLs, credentials, private queries, and raw
+        exports.
+    </p>
+
+    <p>
+        The exact dataset release, tables, date windows, filtering rules, and
+        exclusions used in this study are documented in the accompanying
+        capstone notebook.
+    </p>
+
+    <h2>3. Methodology</h2>
+
+    <p>
+        The methodology includes feature construction, label definition,
+        baseline scoring, machine-learning modeling, validation, and leakage
+        checks. Features are constructed so that information from the future
+        evaluation period is not used to make the prediction.
+    </p>
+
+    <h2>4. Results</h2>
+
+    <p class="result">
+        Model and baseline results will be presented here.
+    </p>
+
+    <p>
+        The final version of this section will contain the actual metrics,
+        charts, comparisons, and findings produced by the capstone analysis.
+    </p>
+
+    <h2>5. Limitations & Honest Framing</h2>
+
+    <p>
+        The findings describe patterns observed in the available data.
+        They should not be interpreted as proof that a particular content
+        refresh will cause an improvement in search performance or as evidence
+        that the analysis has identified Google's ranking algorithm.
+    </p>
+
+    <h2>6. Ranked Recommendations</h2>
+
+    <p>
+        The model-generated ranking will be translated into an actionable
+        content-review queue. Each recommendation will include its priority,
+        relevant signals or reason codes, and suggested action.
+    </p>
+
+    <h2>7. Reproducibility</h2>
+
+    <p>
+        The analysis and capstone notebook are available in the accompanying
+        GitHub repository.
+    </p>
+
+    <p>
+        <a href="https://github.com/kunaaaaaal-cmd/ml-internship-starter">
+            View GitHub Repository
+        </a>
+    </p>
+
+    <h2>8. Acknowledgments & Data Credit</h2>
+
+    <p>
+        Built on the
+        <a href="https://flyrank.ai">
+            FlyRank ML Internship dataset
+        </a>.
+    </p>
+
+    <footer>
+        <p>
+            Research project — FlyRank ML Internship Capstone
+        </p>
+    </footer>
+
+</body>
+</html>
