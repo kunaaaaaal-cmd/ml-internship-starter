@@ -1,185 +1,750 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Content Refresh Opportunity Scoring Using Search Intelligence</title>
+<title>Refresh Opportunity Scoring | FlyRank ML Capstone</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.7;
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 20px;
-            color: #222;
-        }
+<style>
 
-        h1 {
-            font-size: 42px;
-            line-height: 1.2;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        h2 {
-            margin-top: 50px;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    background: #f6f7fb;
+    color: #202124;
+}
 
-        .subtitle {
-            color: #666;
-            font-size: 20px;
-        }
+.container {
+    width: min(1100px, 92%);
+    margin: auto;
+}
 
-        .abstract {
-            background: #f5f5f5;
-            padding: 25px;
-            border-radius: 10px;
-        }
+/* HERO */
 
-        .result {
-            font-size: 20px;
-            font-weight: bold;
-        }
+.hero {
+    background: #111827;
+    color: white;
+    padding: 90px 0 80px;
+}
 
-        footer {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #666;
-        }
-    </style>
+.badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 30px;
+    background: #273449;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
+    max-width: 900px;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    font-size: 21px;
+    max-width: 800px;
+    color: #d1d5db;
+}
+
+.hero-meta {
+    margin-top: 35px;
+    color: #9ca3af;
+}
+
+/* CONTENT */
+
+main {
+    padding: 60px 0;
+}
+
+section {
+    background: white;
+    margin-bottom: 30px;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+h3 {
+    font-size: 21px;
+    margin: 25px 0 10px;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+ul {
+    margin: 15px 0 15px 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* ABSTRACT */
+
+.abstract {
+    font-size: 18px;
+}
+
+/* METRICS */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.metric {
+    padding: 25px;
+    background: #f3f4f6;
+    border-radius: 14px;
+}
+
+.metric-number {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.metric-label {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* CALLOUT */
+
+.callout {
+    background: #f3f4f6;
+    border-left: 5px solid #111827;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 8px;
+}
+
+/* TABLE */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+th {
+    background: #f3f4f6;
+}
+
+/* CHARTS */
+
+.chart {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.chart img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+/* RECOMMENDATIONS */
+
+.recommendation {
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.recommendation strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #111827;
+    color: #d1d5db;
+    padding: 50px 0;
+}
+
+footer a {
+    color: white;
+}
+
+.links a {
+    margin-right: 15px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section {
+        padding: 30px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <h1>Content Refresh Opportunity Scoring Using Search Intelligence</h1>
+<!-- HERO -->
 
-    <p class="subtitle">
-        A machine-learning approach to prioritizing content for review
-    </p>
+<header class="hero">
 
-    <h2>Abstract</h2>
+<div class="container">
 
-    <div class="abstract">
-        <p>
-            This research investigates whether search-performance and content
-            signals can be used to identify and prioritize pages that may
-            warrant content review or refresh.
-        </p>
+<span class="badge">FlyRank ML Internship · Capstone</span>
 
-        <p>
-            The analysis uses the FlyRank ML Internship dataset and constructs
-            features from historical search visibility, engagement, content
-            characteristics, and freshness signals.
-        </p>
+<h1>
+Refresh Opportunity Scoring
+</h1>
 
-        <p>
-            A machine-learning model is compared against a transparent baseline
-            using a held-out validation design.
-        </p>
+<p>
+A Machine Learning Approach to Prioritizing Content Review
+</p>
 
-        <p>
-            The results are evaluated using ranking-oriented performance
-            measures and translated into prioritized content recommendations.
-        </p>
+<div class="hero-meta">
+Anonymized search-performance and content-freshness analysis
+</div>
 
-        <p>
-            The resulting framework is intended as a decision-support system
-            for content review rather than evidence of causal effects on
-            search-engine rankings.
-        </p>
-    </div>
+</div>
 
-    <h2>1. Introduction / Problem Statement</h2>
+</header>
 
-    <p>
-        Content teams often have more pages available for review than they can
-        manually evaluate. This research addresses the problem of prioritizing
-        which pages should receive attention first using measurable search and
-        content signals.
-    </p>
 
-    <h2>2. Data</h2>
+<main class="container">
 
-    <p>
-        This study uses the FlyRank ML Internship dataset. The analysis uses
-        publicly safe, anonymized information and excludes private client
-        information, domains, URLs, credentials, private queries, and raw
-        exports.
-    </p>
 
-    <p>
-        The exact dataset release, tables, date windows, filtering rules, and
-        exclusions used in this study are documented in the accompanying
-        capstone notebook.
-    </p>
+<!-- ABSTRACT -->
 
-    <h2>3. Methodology</h2>
+<section>
 
-    <p>
-        The methodology includes feature construction, label definition,
-        baseline scoring, machine-learning modeling, validation, and leakage
-        checks. Features are constructed so that information from the future
-        evaluation period is not used to make the prediction.
-    </p>
+<h2>Abstract</h2>
 
-    <h2>4. Results</h2>
+<p class="abstract">
 
-    <p class="result">
-        Model and baseline results will be presented here.
-    </p>
+This project asks whether observable search-performance and content-freshness signals can be used to prioritize pages for potential content review. Using 100 anonymized content records from the FlyRank ML Internship dataset, a rule-based opportunity label was constructed and compared with Logistic Regression and Random Forest models. The Random Forest achieved an F1-score of 0.889 and recall of 0.941 on a 20-page held-out sample, identifying 16 of 17 potential-opportunity pages. However, it also classified all three non-opportunity pages as opportunities and produced a ROC-AUC of 0.353, limiting confidence in its probability ranking. The resulting system is therefore best interpreted as a high-recall screening and decision-support workflow rather than evidence that refreshing a page will cause improved search performance.
 
-    <p>
-        The final version of this section will contain the actual metrics,
-        charts, comparisons, and findings produced by the capstone analysis.
-    </p>
+</p>
 
-    <h2>5. Limitations & Honest Framing</h2>
+<div class="metrics">
 
-    <p>
-        The findings describe patterns observed in the available data.
-        They should not be interpreted as proof that a particular content
-        refresh will cause an improvement in search performance or as evidence
-        that the analysis has identified Google's ranking algorithm.
-    </p>
+<div class="metric">
+<div class="metric-number">100</div>
+<div class="metric-label">Pages analyzed</div>
+</div>
 
-    <h2>6. Ranked Recommendations</h2>
+<div class="metric">
+<div class="metric-number">87%</div>
+<div class="metric-label">Potential opportunities</div>
+</div>
 
-    <p>
-        The model-generated ranking will be translated into an actionable
-        content-review queue. Each recommendation will include its priority,
-        relevant signals or reason codes, and suggested action.
-    </p>
+<div class="metric">
+<div class="metric-number">0.889</div>
+<div class="metric-label">Random Forest F1</div>
+</div>
 
-    <h2>7. Reproducibility</h2>
+<div class="metric">
+<div class="metric-number">0.941</div>
+<div class="metric-label">Random Forest Recall</div>
+</div>
 
-    <p>
-        The analysis and capstone notebook are available in the accompanying
-        GitHub repository.
-    </p>
+</div>
 
-    <p>
-        <a href="https://github.com/kunaaaaaal-cmd/ml-internship-starter">
-            View GitHub Repository
-        </a>
-    </p>
+</section>
 
-    <h2>8. Acknowledgments & Data Credit</h2>
 
-    <p>
-        Built on the
-        <a href="https://flyrank.ai">
-            FlyRank ML Internship dataset
-        </a>.
-    </p>
+<!-- INTRODUCTION -->
 
-    <footer>
-        <p>
-            Research project — FlyRank ML Internship Capstone
-        </p>
-    </footer>
+<section>
+
+<h2>1. Introduction / Problem Statement</h2>
+
+<p>
+Content teams may have many pages that could potentially benefit from review, but reviewing every page with equal priority is inefficient.
+</p>
+
+<p>
+The decision supported by this project is:
+</p>
+
+<div class="callout">
+
+<strong>
+Which content pages should be reviewed first for a potential refresh?
+</strong>
+
+</div>
+
+<p>
+The goal is not to predict Google's ranking algorithm or guarantee that a refresh will improve performance. Instead, the project creates a repeatable scoring workflow that identifies pages showing observable signals associated with potential review opportunities.
+</p>
+
+</section>
+
+
+<!-- DATA -->
+
+<section>
+
+<h2>2. Data</h2>
+
+<p>
+The analysis uses the FlyRank ML Internship dataset warehouse release containing anonymized content-level search and content-health measurements.
+</p>
+
+<h3>Dataset size</h3>
+
+<p>
+The working dataset contains <strong>100 rows and 16 columns</strong>.
+</p>
+
+<h3>Key variables</h3>
+
+<ul>
+
+<li>Search volume</li>
+<li>Competition</li>
+<li>CPC</li>
+<li>Word count</li>
+<li>Character count</li>
+<li>Content age</li>
+<li>Days since last update</li>
+<li>Previous 30-day impressions, clicks and sessions</li>
+<li>Last 30-day impressions, clicks and sessions</li>
+<li>Trend direction</li>
+<li>Trend percentage</li>
+
+</ul>
+
+<h3>Data quality</h3>
+
+<p>
+All required columns were present and no missing values were found in the analyzed dataset.
+</p>
+
+<h3>Public-safe exclusions</h3>
+
+<p>
+The analysis does not expose client names, domains, private search queries, credentials, or raw private exports. The output is restricted to anonymized content identifiers and aggregate model results.
+</p>
+
+</section>
+
+
+<!-- METHODOLOGY -->
+
+<section>
+
+<h2>3. Methodology</h2>
+
+<h3>Opportunity label</h3>
+
+<p>
+A decision-support opportunity label was constructed from observable content-performance and freshness conditions. Of the 100 analyzed pages, 87 were labeled as potential opportunities and 13 were not.
+</p>
+
+<h3>Features</h3>
+
+<p>
+The modeling workflow uses available content and search-demand characteristics while avoiding direct use of variables that define the opportunity label, reducing the risk of target leakage.
+</p>
+
+<h3>Models</h3>
+
+<ul>
+
+<li><strong>Majority-class baseline</strong> — simple reference point.</li>
+
+<li><strong>Logistic Regression</strong> — interpretable classification benchmark.</li>
+
+<li><strong>Random Forest</strong> — nonlinear ensemble model used for the primary scoring experiment.</li>
+
+</ul>
+
+<h3>Validation design</h3>
+
+<p>
+The models were evaluated using the same held-out 20% test set. The test set contained 20 pages: 3 labeled as not opportunities and 17 labeled as potential opportunities.
+</p>
+
+<h3>Leakage checks</h3>
+
+<p>
+Training and validation data were separated before model fitting and preprocessing. Label-defining information was excluded from the primary model features so that the model was not simply given the answer it was expected to predict.
+</p>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section>
+
+<h2>4. Results</h2>
+
+<p>
+The models were evaluated on the same held-out test set.
+</p>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1</th>
+<th>ROC-AUC</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Logistic Regression</td>
+<td>0.450</td>
+<td>0.800</td>
+<td>0.471</td>
+<td>0.593</td>
+<td>0.373</td>
+</tr>
+
+<tr>
+<td><strong>Random Forest</strong></td>
+<td><strong>0.800</strong></td>
+<td><strong>0.842</strong></td>
+<td><strong>0.941</strong></td>
+<td><strong>0.889</strong></td>
+<td>0.353</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="chart">
+
+<img src="assets/model_comparison.png"
+alt="Model performance comparison">
+
+</div>
+
+
+<h3>Confusion matrix</h3>
+
+<p>
+The Random Forest correctly identified 16 of 17 potential opportunities. However, all 3 pages labeled as not opportunities were classified as opportunities.
+</p>
+
+<div class="chart">
+
+<img src="assets/confusion_matrix.png"
+alt="Random Forest confusion matrix">
+
+</div>
+
+
+<div class="callout">
+
+<strong>Honest interpretation:</strong>
+
+The Random Forest showed strong recall and F1 on this small held-out sample, but its ROC-AUC of 0.353 indicates that its probability ranking did not reliably separate the two classes. The model should therefore be treated as a screening experiment rather than a validated probability predictor.
+
+</div>
+
+</section>
+
+
+<!-- FEATURE IMPORTANCE -->
+
+<section>
+
+<h2>5. Model Signals</h2>
+
+<p>
+The Random Forest feature importance results indicate which variables contributed most to its decisions in this experiment.
+</p>
+
+<div class="chart">
+
+<img src="assets/feature_importance.png"
+alt="Random Forest feature importance">
+
+</div>
+
+<p>
+The highest model importance was assigned to <strong>days_since_last_update</strong>, followed by character count, content age, word count, search volume, CPC, and competition.
+</p>
+
+<p>
+These are model associations, not causal effects. In particular, the feature importance result does not establish that updating a page will cause search performance to improve.
+</p>
+
+</section>
+
+
+<!-- LIMITATIONS -->
+
+<section>
+
+<h2>6. Limitations & Honest Framing</h2>
+
+<h3>Small sample</h3>
+
+<p>
+Only 100 pages were available, with 20 pages in the held-out test set. This makes individual evaluation metrics sensitive to the particular split.
+</p>
+
+<h3>Constructed label</h3>
+
+<p>
+The opportunity label represents a decision-support rule based on observable signals. It is not an observed outcome demonstrating that a refresh would improve performance.
+</p>
+
+<h3>Class imbalance</h3>
+
+<p>
+87 of 100 pages were labeled as potential opportunities. Accuracy therefore does not tell the complete story.
+</p>
+
+<h3>Validation limitations</h3>
+
+<p>
+The available aggregate windows do not provide a clean future outcome following an actual content refresh. The experiment therefore does not establish true future forecasting performance.
+</p>
+
+<h3>No causal claim</h3>
+
+<p>
+The analysis does not establish that content age, freshness, content length, search demand, or any other feature causes search-performance changes.
+</p>
+
+<div class="callout">
+
+<strong>Recommended framing:</strong>
+
+Observed patterns and model outputs should be treated as directional decision support. Human review remains necessary before taking content action.
+
+</div>
+
+</section>
+
+
+<!-- RECOMMENDATIONS -->
+
+<section>
+
+<h2>7. Ranked Recommendations</h2>
+
+<p>
+The scoring workflow converts model outputs and observable signals into a ranked content-review queue.
+</p>
+
+<div class="chart">
+
+<img src="assets/opportunity_ranking.png"
+alt="Top content refresh opportunities">
+
+</div>
+
+
+<h3>Action playbook</h3>
+
+<div class="recommendation">
+
+<strong>High Priority — Refresh / investigate</strong>
+
+Pages showing multiple opportunity signals should receive the earliest human review. Review freshness, declining performance, and content quality before deciding on an action.
+
+</div>
+
+<div class="recommendation">
+
+<strong>Medium Priority — Review</strong>
+
+Pages with a meaningful but less urgent opportunity signal can be evaluated after the highest-priority group.
+
+</div>
+
+<div class="recommendation">
+
+<strong>Monitor</strong>
+
+Pages without strong opportunity signals can remain in the monitoring queue rather than receiving immediate refresh work.
+
+</div>
+
+
+<h3>Reason codes</h3>
+
+<div class="chart">
+
+<img src="assets/reason_codes.png"
+alt="Reasons behind refresh opportunities">
+
+</div>
+
+<p>
+Reason codes make each recommendation interpretable by explaining the primary observable signal behind its ranking.
+</p>
+
+</section>
+
+
+<!-- REPRODUCIBILITY -->
+
+<section>
+
+<h2>8. Reproducibility</h2>
+
+<p>
+The complete analysis was developed in Google Colab and saved as a reproducible notebook.
+</p>
+
+<ul>
+
+<li>
+Notebook:
+<strong>work/notebooks/capstone.ipynb</strong>
+</li>
+
+<li>
+Repository:
+<a href="https://github.com/kunaaaaaal-cmd/ml-internship-starter">
+GitHub repository
+</a>
+</li>
+
+<li>
+Charts are stored under:
+<strong>docs/assets/</strong>
+</li>
+
+</ul>
+
+<p>
+The workflow includes data validation, label construction, feature engineering, model training, validation, feature analysis, scoring, reason-code generation, and ranked recommendations.
+</p>
+
+</section>
+
+
+<!-- CONCLUSION -->
+
+<section>
+
+<h2>9. Conclusion</h2>
+
+<p>
+This capstone demonstrates a complete content-review prioritization workflow using machine learning and anonymized search-performance signals.
+</p>
+
+<p>
+The Random Forest produced strong recall and F1 on the small held-out sample, making it potentially useful as a first-pass screening tool. However, the weak ROC-AUC and false-positive behavior show why the output should not be treated as a production-ready predictor.
+</p>
+
+<p>
+The practical value of the workflow is therefore its ability to create a transparent, ranked review queue that helps content teams decide where human investigation may be most useful.
+</p>
+
+</section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<h2 style="color:white;">
+Acknowledgments & Data Credit
+</h2>
+
+<p>
+Built on the FlyRank ML Internship dataset.
+</p>
+
+<p>
+This project was developed as part of the FlyRank ML Internship capstone.
+</p>
+
+<p>
+Data and internship credit:
+<a href="https://flyrank.ai">
+FlyRank
+</a>
+</p>
+
+<p>
+Public-safe analysis using anonymized content identifiers and aggregate results.
+</p>
+
+</div>
+
+</footer>
 
 </body>
 </html>
